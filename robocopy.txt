@@ -1,0 +1,11 @@
+set number=0
+
+for /L %%A IN (1,1,100) do (
+set /a number=%number% + 1
+if exist "copyITfolder%number%.log"
+robocopy e:\logs\copyITfolder.log e:\logs\previous\copyITfolder2.log
+)
+
+
+set /a number=%number%+1
+robocopy \\cogent-dc1\Company_Data\IT E:\IT /MIR /XA:H /dcopy:T /copy:DATSOU /MT:8 /W:0 /R:1 > e:\logs\copyITfolder%number%.log
